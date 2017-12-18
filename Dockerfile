@@ -15,6 +15,7 @@ RUN dnf install -y glib2-devel gtest gobject-introspection-devel python-gobject-
 RUN dnf install -y openmpi mpich-devel environment-modules openmpi-devel
 RUN dnf install -y mesa-vulkan-devel vulkan-devel 
 RUN dnf install -y gnustep-base-devel gnustep-make
+RUN dnf install -y graphviz texlive-* 
 
 RUN git clone https://github.com/jeandet/vera.git /root/vera
 RUN cd /root/vera && mkdir build && cd build && cmake ../ && make -j 4 && make install
