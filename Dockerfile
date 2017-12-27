@@ -1,6 +1,7 @@
 FROM jeandet/teamcity-docker-minimal-agent
 LABEL maintainer "Alexis Jeandet <alexis.jeandet@member.fsf.org>"
 
+RUN dnf clean all
 RUN dnf update -y
 
 RUN dnf install -y cppcheck luabind-devel tcl-devel tk-devel lua-devel python2-devel clang-devel ncurses-devel llvm-static clang-analyzer lcov openmpi-devel 
@@ -16,6 +17,14 @@ RUN dnf install -y openmpi mpich-devel environment-modules openmpi-devel
 RUN dnf install -y mesa-vulkan-devel vulkan-devel 
 RUN dnf install -y gnustep-base-devel gnustep-make
 RUN dnf install -y graphviz texlive-* 
+RUN dnf install -y gitstats
+
+RUN wget https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip
+RUN wget http://repo1.maven.org/maven2/org/codehaus/sonar/runner/sonar-runner-dist/2.4/sonar-runner-dist-2.4.zip
+RUN unzip build-wrapper-linux-x86.zip -d /opt/
+RUN unzip sonar-runner-dist-2.4.zip -d /opt/
+RUN ln -s /opt/build-wrapper-linux-x86/build-wrapper-linux-x86-64 /usr/bin/build-wrapper-linux
+RUN ln -s /opt/sonar-runner-2.4/bin/sonar-runner /usr/bin/sonar-runner
 
 RUN git clone https://github.com/jeandet/vera.git /root/vera
 RUN cd /root/vera && mkdir build && cd build && cmake ../ && make -j 4 && make install
@@ -31,6 +40,9 @@ RUN echo "system.has_qt5=true" >> /opt/buildagent/conf/buildAgent.dist.propertie
     echo "system.has_cppcheck=true" >> /opt/buildagent/conf/buildAgent.dist.properties && \
     echo "system.has_clang_analyzer=true" >> /opt/buildagent/conf/buildAgent.dist.properties && \
     echo "system.has_lcov=true" >> /opt/buildagent/conf/buildAgent.dist.properties && \
+    echo "system.has_gitstats=true" >> /opt/buildagent/conf/buildAgent.dist.properties && \
+    echo "system.has_graphviz=true" >> /opt/buildagent/conf/buildAgent.dist.properties && \
+    echo "system.has_sonarqube=true" >> /opt/buildagent/conf/buildAgent.dist.properties && \
     echo "system.has_openmpi=true" >> /opt/buildagent/conf/buildAgent.dist.properties
 
 
