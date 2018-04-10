@@ -18,6 +18,7 @@ RUN dnf install -y mesa-vulkan-devel vulkan-devel
 RUN dnf install -y gnustep-base-devel gnustep-make
 RUN dnf install -y graphviz texlive-*
 RUN dnf install -y gitstats
+RUN dnf install -y python3-scipy python2-scipy
 
 RUN wget https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip
 RUN wget http://repo1.maven.org/maven2/org/codehaus/sonar/runner/sonar-runner-dist/2.4/sonar-runner-dist-2.4.zip
