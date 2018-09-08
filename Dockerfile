@@ -6,19 +6,20 @@ RUN dnf update -y
 
 RUN dnf install -y cppcheck luabind-devel tcl-devel tk-devel lua-devel python2-devel clang-devel ncurses-devel llvm-static clang-analyzer lcov openmpi-devel
 RUN dnf install -y git ninja-build ncurses-devel cups-devel zlib-static zlib-devel itstool libpcap-devel SDL2-devel wget redhat-rpm-config  gettext unzip doxygen
-RUN dnf install -y gcc-objc++ flex flex-devel bison-devel bison gcc-objc libasan valgrind
+RUN dnf install -y gcc-objc++ flex flex-devel bison-devel bison gcc-objc libasan valgrind libubsan clang meson
 RUN dnf install -y vala hg
 RUN dnf install -y libwmf-devel qt5*-devel qt*-devel
 RUN dnf install -y llvm llvm-devel llvm3.9-devel llvm-static
-RUN dnf install -y boost-*
+RUN dnf install -y boost-* boost-devel
 RUN dnf install -y wxGTK-devel wxGTK3-devel
 RUN dnf install -y glib2-devel gtest gobject-introspection-devel python-gobject-base python3-gobject-base gmock-devel gmock gtest-devel gtk3-devel
-RUN dnf install -y openmpi mpich-devel environment-modules openmpi-devel
+RUN dnf install -y openmpi mpich-devel environment-modules openmpi-devel hdf5 hdf5-devel hdf5-openmpi-devel 
 RUN dnf install -y mesa-vulkan-devel vulkan-devel
 RUN dnf install -y gnustep-base-devel gnustep-make
 RUN dnf install -y graphviz texlive-*
 RUN dnf install -y gitstats
-RUN dnf install -y python3-scipy python2-scipy
+RUN dnf install -y python*-scipy python*-scipy 
+RUN dnf install -y python*-sphinx python*-sphinx_rtd_theme python*-breathe python*-docutils 
 
 RUN wget https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip
 RUN wget http://repo1.maven.org/maven2/org/codehaus/sonar/runner/sonar-runner-dist/2.4/sonar-runner-dist-2.4.zip
